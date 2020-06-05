@@ -16,9 +16,11 @@ import java.io.Serializable
  **/
 
 /**
- * Write [Serializable] class into [File]
+ * Write [Any] class into [File]
+ *
+ * It is warned that [Serializable] interface should be implemented
  **/
-fun File.writeObject(obj: Serializable) {
+fun File.writeObject(obj: Any) {
     outputStream().osApply {
         ObjectOutputStream(this).osApply {
             (this as ObjectOutputStream).writeObject(obj)
@@ -63,6 +65,7 @@ fun File.readObjectSafe(): Any? {
  * or thrown if casting failed
  **/
 fun <T> File.readObjectAs(): T? {
+    @Suppress("UNCHECKED_CAST")
     return readObject() as T?
 }
 
@@ -81,6 +84,9 @@ fun <T> File.readObjectSafeAs(): T? {
         return null
     }
     var temp: T? = null
-    tryCatch { temp = readObject() as T? }
+    tryCatch {
+        @Suppress("UNCHECKED_CAST")
+        temp = readObject() as T?
+    }
     return temp
 }

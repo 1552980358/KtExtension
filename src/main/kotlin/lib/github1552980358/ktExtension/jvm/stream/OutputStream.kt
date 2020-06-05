@@ -1,7 +1,6 @@
 package lib.github1552980358.ktExtension.jvm.stream
 
 import lib.github1552980358.ktExtension.jvm.javaKeyword.tryCatch
-import java.io.File
 import java.io.OutputStream
 
 /**
@@ -13,7 +12,7 @@ import java.io.OutputStream
  **/
 
 /**
- * flush and close after complete [block], use as [apply]
+ * Flush and close after complete [block], use as [apply]
  **/
 fun OutputStream.osApply(block: OutputStream.() -> Unit) = this.apply {
     try {
@@ -27,7 +26,7 @@ fun OutputStream.osApply(block: OutputStream.() -> Unit) = this.apply {
 }
 
 /**
- * flush and close after complete [block], use as [run]
+ * Flush and close after complete [block], use as [run]
  **/
 fun <R> OutputStream.osRun(block: OutputStream.() -> R): R {
     try {
@@ -37,5 +36,22 @@ fun <R> OutputStream.osRun(block: OutputStream.() -> R): R {
     } finally {
         tryCatch { flush() }
         tryCatch { close() }
+    }
+}
+
+/**
+ * Close after [block] is processed
+ **/
+fun OutputStream.osUse(block: OutputStream.() -> Unit) {
+    try {
+        block(this)
+    } catch (e: Exception) {
+        e.printStackTrace()
+    } finally {
+        try {
+            close()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 }

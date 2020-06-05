@@ -14,7 +14,7 @@ import java.io.OutputStream
 /**
  * Flush and close after complete [block], use as [apply]
  **/
-fun OutputStream.osApply(block: OutputStream.() -> Unit) = this.apply {
+inline fun OutputStream.osApply(block: OutputStream.() -> Unit) = this.apply {
     try {
         block(this)
     } catch (e: Exception) {
@@ -28,7 +28,7 @@ fun OutputStream.osApply(block: OutputStream.() -> Unit) = this.apply {
 /**
  * Flush and close after complete [block], use as [run]
  **/
-fun <R> OutputStream.osRun(block: OutputStream.() -> R): R {
+inline fun <R> OutputStream.osRun(block: OutputStream.() -> R): R {
     try {
         return block(this)
     } catch (e: Exception) {
@@ -42,7 +42,7 @@ fun <R> OutputStream.osRun(block: OutputStream.() -> R): R {
 /**
  * Close after [block] is processed
  **/
-fun OutputStream.osUse(block: OutputStream.() -> Unit) {
+inline fun OutputStream.osUse(block: OutputStream.() -> Unit) {
     try {
         block(this)
     } catch (e: Exception) {

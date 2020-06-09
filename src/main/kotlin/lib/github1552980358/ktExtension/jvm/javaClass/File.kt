@@ -90,3 +90,9 @@ fun <T> File.readObjectSafeAs(): T? {
     }
     return temp
 }
+
+/**
+ * Rename file into [name] within the same directory
+ * No path is required to provided
+ **/
+fun File.renameAs(name: String) = renameTo(File(this.parent, name))

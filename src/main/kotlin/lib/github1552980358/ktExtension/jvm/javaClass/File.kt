@@ -93,6 +93,44 @@ fun <T> File.readObjectSafeAs(): T? {
 
 /**
  * Rename file into [name] within the same directory
- * No path is required to provided
+ * No path is required to provide
  **/
 fun File.renameAs(name: String) = renameTo(File(this.parent, name))
+
+/**
+ * Move [File] into [file]
+ * Full path should be specified
+ *
+ * Return 0 if full processes success
+ * Return 1 if copy process failed
+ * Return 2 if exception found during deletion process
+ * Return 3 if deletion process failed
+ * Return 4 when unknown error
+ **/
+fun File.moveTo(file: File): Int {
+    try {
+        copyTo(file)
+    } catch (e: Exception) {
+        e.printStackTrace()
+        return 1
+    }
+    if (file.exists() && file.length() == length()) {
+        try {
+            delete()
+        } catch (e: Exception) {
+            e.printStackTrace()
+            return 2
+        }
+        if (!exists()) {
+            return 3
+        }
+        return 0
+    }
+    return 4
+}
+
+fun File.moveTo(absolutePath: String) = moveTo(File(absolutePath))
+
+fun File.moveTo(dir: String, name: String) = moveTo(File(dir, name))
+
+fun File.moveTo(dir: File, name: String) = moveTo(File(dir, name))

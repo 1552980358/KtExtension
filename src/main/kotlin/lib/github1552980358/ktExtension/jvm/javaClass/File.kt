@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package lib.github1552980358.ktExtension.jvm.javaClass
 
 import lib.github1552980358.ktExtension.jvm.javaKeyword.tryCatch
@@ -23,6 +25,7 @@ import java.io.Serializable
 fun File.writeObject(obj: Any) {
     outputStream().osApply {
         ObjectOutputStream(this).osApply {
+            @Suppress("unused")
             (this as ObjectOutputStream).writeObject(obj)
         }
     }

@@ -1,4 +1,4 @@
-package lib.github1552980358.ktExtension.jvm.javaKeyword
+package lib.github1552980358.ktExtension.jvm.keyword
 
 /**
  * [Try]

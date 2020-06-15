@@ -1,15 +1,7 @@
-package lib.github1552980358.ktExtension.jvm.stream
+package lib.github1552980358.ktExtension.jvm.io
 
-import lib.github1552980358.ktExtension.jvm.javaKeyword.tryCatch
+import lib.github1552980358.ktExtension.jvm.keyword.tryCatch
 import java.io.OutputStream
-
-/**
- * [OutputStream]
- * @author  : 1552980328
- * @since   : 0.1
- * @date    : 2020/6/5
- * @time    : 10:01
- **/
 
 /**
  * Flush and close after complete [block], use as [apply]

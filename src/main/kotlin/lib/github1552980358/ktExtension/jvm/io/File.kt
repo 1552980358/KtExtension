@@ -1,21 +1,12 @@
 @file:Suppress("unused")
 
-package lib.github1552980358.ktExtension.jvm.javaClass
+package lib.github1552980358.ktExtension.jvm.io
 
-import lib.github1552980358.ktExtension.jvm.javaKeyword.tryCatch
-import lib.github1552980358.ktExtension.jvm.stream.osApply
+import lib.github1552980358.ktExtension.jvm.keyword.tryCatch
 import java.io.File
 import java.io.ObjectInputStream
 import java.io.ObjectOutputStream
 import java.io.Serializable
-
-/**
- * [File]
- * @author  : 1552980328
- * @since   : 0.1
- * @date    : 2020/6/5
- * @time    : 10:12
- **/
 
 /**
  * Write [Any] class into [File]

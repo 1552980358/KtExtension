@@ -9,11 +9,11 @@ import java.io.ObjectOutputStream
 import java.io.Serializable
 
 /**
- * Write [Any] class into [File]
+ * Write [Any]? class into [File]
  *
  * It is warned that [Serializable] interface should be implemented
  **/
-fun File.writeObject(obj: Any) {
+fun File.writeObject(obj: Any?) {
     outputStream().osApply {
         ObjectOutputStream(this).osApply {
             @Suppress("unused")

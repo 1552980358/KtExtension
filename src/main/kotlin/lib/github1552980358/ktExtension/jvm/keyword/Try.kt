@@ -1,14 +1,6 @@
 package lib.github1552980358.ktExtension.jvm.keyword
 
 /**
- * [Try]
- * @author  : 1552980328
- * @since   :
- * @date    : 2020/6/5
- * @time    : 9:44
- **/
-
-/**
  * Try [block] without writing
  * catch (e: Exception) { ... }
  *
@@ -22,7 +14,6 @@ inline fun tryCatch(block: () -> Unit) = try {
     e.printStackTrace()
     false
 }
-
 
 /**
  * Try [block], usage look at [apply]

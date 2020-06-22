@@ -47,3 +47,18 @@ inline fun OutputStream.osUse(block: OutputStream.() -> Unit) {
         }
     }
 }
+
+
+/**
+ * Extension allows writing [String] directly without manually converting into [ByteArray]
+ **/
+fun OutputStream.write(string: String) = write(string.toByteArray())
+
+/**
+ * Write data to stream wrapped with [tryCatch]
+ **/
+fun OutputStream.tryWrite(string: String) = tryCatch { write(string) }
+
+fun OutputStream.tryWrite(byteArray: ByteArray) = tryCatch { write(byteArray) }
+
+fun OutputStream.tryWrite(byteArray: ByteArray, off: Int, len: Int) = tryCatch { write(byteArray, off, len) }

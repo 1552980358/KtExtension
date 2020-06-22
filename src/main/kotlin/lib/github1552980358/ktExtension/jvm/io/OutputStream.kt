@@ -62,3 +62,12 @@ fun OutputStream.tryWrite(string: String) = tryCatch { write(string) }
 fun OutputStream.tryWrite(byteArray: ByteArray) = tryCatch { write(byteArray) }
 
 fun OutputStream.tryWrite(byteArray: ByteArray, off: Int, len: Int) = tryCatch { write(byteArray, off, len) }
+
+/**
+ * [OutputStream.flush] and [OutputStream.close] after writing to the stream
+ **/
+fun OutputStream.writeAndClose(string: String) = osApply { write(string) }
+
+fun OutputStream.writeAndClose(byteArray: ByteArray) = osApply { write(byteArray) }
+
+fun OutputStream.writeAndClose(byteArray: ByteArray, off: Int, len: Int) = osApply { write(byteArray, off, len) }

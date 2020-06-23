@@ -9,6 +9,11 @@ import java.io.ObjectOutputStream
 import java.io.Serializable
 
 /**
+ * Check whether [File] is empty
+ **/
+fun File.isEmpty() = length() == 0L
+
+/**
  * Write [Any]? class into [File]
  *
  * It is warned that [Serializable] interface should be implemented

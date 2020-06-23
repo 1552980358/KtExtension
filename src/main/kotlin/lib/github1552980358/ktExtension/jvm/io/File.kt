@@ -14,6 +14,14 @@ import java.io.Serializable
 fun File.isEmpty() = length() == 0L
 
 /**
+ * Check whether [File] is null or empty
+ **/
+fun File?.isNullOrEmpty(): Boolean {
+    this?:return true
+    return length() == 0L
+}
+
+/**
  * Write [Any]? class into [File]
  *
  * It is warned that [Serializable] interface should be implemented

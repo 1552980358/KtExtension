@@ -16,10 +16,7 @@ fun File.isEmpty() = length() == 0L
 /**
  * Check whether [File] is null or empty
  **/
-fun File?.isNullOrEmpty(): Boolean {
-    this?:return true
-    return length() == 0L
-}
+fun File?.isNullOrEmpty() = this == null || isEmpty()
 
 /**
  * Write [Any]? class into [File]

@@ -24,6 +24,10 @@ fun File?.isNullOrEmpty() = this == null || isEmpty()
  * It is warned that [Serializable] interface should be implemented
  **/
 fun File.writeObject(obj: Any?) {
+    if (exists()) {
+        delete()
+    }
+    createNewFile()
     outputStream().osApply {
         ObjectOutputStream(this).osApply {
             @Suppress("unused")

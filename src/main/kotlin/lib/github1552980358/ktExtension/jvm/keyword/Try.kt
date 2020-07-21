@@ -32,5 +32,6 @@ inline fun <T> T.tryAlso(block: (T) -> Unit) = this.apply {
 /**
  * Try [block], usage look at [run]
  **/
-inline fun <T, R> T.tryRun(block: T.() -> R): R = block(this)
+inline fun <T, R> T.tryRun(block: T.() -> R): R? =
+    try { block(this) } catch (e: Exception) { null }
 

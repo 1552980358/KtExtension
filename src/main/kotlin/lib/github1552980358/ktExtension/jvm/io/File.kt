@@ -40,15 +40,7 @@ fun File.writeObject(obj: Any?) {
  * Read Object from [File] as [Any]?
  * Exceptions will be thrown by [ObjectInputStream] if some exception is found
  **/
-fun File.readObject(): Any? {
-    var temp: Any?
-    inputStream().use { `is` ->
-        ObjectInputStream(`is`).use { ois ->
-            temp = ois.readObject()
-        }
-    }
-    return temp
-}
+fun File.readObject(): Any? = inputStream().readObject()
 
 /**
  * Read Object from [File]
@@ -72,10 +64,7 @@ fun File.readObjectSafe(): Any? {
  * Exceptions will be thrown by [ObjectInputStream] if some exception is found
  * or thrown if casting failed
  **/
-fun <T> File.readObjectAs(): T? {
-    @Suppress("UNCHECKED_CAST")
-    return readObject() as T?
-}
+fun <T> File.readObjectAs(): T? = inputStream().readObjectAs()
 
 /**
  * Read Object and try casting as [T]
@@ -94,7 +83,7 @@ fun <T> File.readObjectSafeAs(): T? {
     var temp: T? = null
     tryCatch {
         @Suppress("UNCHECKED_CAST")
-        temp = readObject() as T?
+        temp = readObjectAs()
     }
     return temp
 }

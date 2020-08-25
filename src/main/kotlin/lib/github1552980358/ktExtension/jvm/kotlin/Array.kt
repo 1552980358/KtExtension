@@ -59,3 +59,27 @@ fun <T> Array<T>.moveAndShift(i: Int, j: Int) {
         this[j] = temp
     }
 }
+
+/**
+ * Add [component] into the array and return a new array
+ **/
+inline fun <reified T> Array<T>.add(component: T) =
+    toMutableList()
+        .apply { add(component) }
+        .toTypedArray()
+
+/**
+ * Add [components] into the array and return a new array
+ **/
+inline fun <reified T> Array<T>.add(vararg components: T) =
+    toMutableList()
+        .apply { components.forEach { component -> add(component) } }
+        .toTypedArray()
+
+/**
+ * Add [componentsArray] into the array and return a new array
+ **/
+inline fun <reified T> Array<T>.add(vararg componentsArray: Array<T>) =
+    toMutableList().apply {
+        componentsArray.forEach { outer -> outer.forEach { inner -> add(inner) } }
+    }.toTypedArray()

@@ -15,6 +15,18 @@ fun Process.writeCommand(command: String) = apply {
 }
 
 /**
+ * Writes [command] and press enter
+ **/
+fun Process.writeCommands(commands: List<String>) = apply {
+    outputStream.bufferedWriter().apply {
+        commands.forEach { command ->
+            write(command)
+            newLine()
+        }
+    }
+}
+
+/**
  * Complete and close the [OutputStream] from [Process]
  **/
 fun Process.commandEnd() = apply {

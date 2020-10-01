@@ -3,6 +3,12 @@ package lib.github1552980358.ktExtension.jvm.keyword
 /**
  * Try [block] without writing
  * catch (e: Exception) { ... }
+ **/
+inline fun tryOnly(block: () -> Unit) = try { block() } catch (e: Exception) {  }
+
+/**
+ * Try [block] without writing
+ * catch (e: Exception) { ... }
  *
  * Return true if complete
  * Return fail if exception caught

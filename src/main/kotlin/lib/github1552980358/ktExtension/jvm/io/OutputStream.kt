@@ -6,6 +6,7 @@ import java.io.OutputStream
 /**
  * Flush and close after complete [block], use as [apply]
  **/
+@Suppress("unused")
 inline fun OutputStream.osApply(block: OutputStream.() -> Unit) = this.apply {
     try {
         block(this)
@@ -20,6 +21,7 @@ inline fun OutputStream.osApply(block: OutputStream.() -> Unit) = this.apply {
 /**
  * Flush and close after complete [block], use as [run]
  **/
+@Suppress("unused")
 inline fun <R> OutputStream.osRun(block: OutputStream.() -> R): R {
     try {
         return block(this)
@@ -34,6 +36,7 @@ inline fun <R> OutputStream.osRun(block: OutputStream.() -> R): R {
 /**
  * Close after [block] is processed
  **/
+@Suppress("unused")
 inline fun OutputStream.osUse(block: OutputStream.() -> Unit) {
     try {
         block(this)

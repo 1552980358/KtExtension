@@ -1,5 +1,3 @@
-@file:Suppress("unused")
-
 package lib.github1552980358.ktExtension.jvm.io
 
 import lib.github1552980358.ktExtension.jvm.keyword.tryCatch
@@ -16,6 +14,7 @@ fun File.isEmpty() = length() == 0L
 /**
  * Check whether [File] is null or empty
  **/
+@Suppress("unused")
 fun File?.isNullOrEmpty() = this == null || isEmpty()
 
 /**
@@ -47,6 +46,7 @@ fun File.readObject(): Any? = inputStream().readObject()
  * null will be returned if [File] does not exist or exception thrown
  * Nullable Any will be returned if no exception found
  **/
+@Suppress("unused")
 fun File.readObjectSafe(): Any? {
     if (!exists()) {
         return null
@@ -73,6 +73,7 @@ fun <T> File.readObjectAs(): T? = inputStream().readObjectAs()
  * [File] does not exists or
  * [File] is empty
  **/
+@Suppress("unused")
 fun <T> File.readObjectSafeAs(): T? {
     if (!exists()) {
         return null
@@ -92,6 +93,7 @@ fun <T> File.readObjectSafeAs(): T? {
  * Rename file into [name] within the same directory
  * No path is required to provide
  **/
+@Suppress("unused")
 fun File.renameAs(name: String) = renameTo(File(this.parent, name))
 
 /**
@@ -126,8 +128,11 @@ fun File.moveTo(file: File): Int {
     return 4
 }
 
+@Suppress("unused")
 fun File.moveTo(absolutePath: String) = moveTo(File(absolutePath))
 
+@Suppress("unused")
 fun File.moveTo(dir: String, name: String) = moveTo(File(dir, name))
 
+@Suppress("unused")
 fun File.moveTo(dir: File, name: String) = moveTo(File(dir, name))

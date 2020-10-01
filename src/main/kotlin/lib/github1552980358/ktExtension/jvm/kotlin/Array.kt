@@ -1,5 +1,3 @@
-@file:Suppress("unused")
-
 package lib.github1552980358.ktExtension.jvm.kotlin
 
 import java.lang.IllegalArgumentException
@@ -9,6 +7,7 @@ import java.util.Collections
  * Swap element of index [i] and [j]
  * Same function as [Collections.swap]
  **/
+@Suppress("unused")
 fun <T> Array<T>.swap(i: Int, j: Int) {
     if (i == j) {
         // Do Nothing
@@ -30,6 +29,7 @@ fun <T> Array<T>.swap(i: Int, j: Int) {
 /**
  * Move element of index [i] into index [j]
  **/
+@Suppress("unused")
 fun <T> Array<T>.moveAndShift(i: Int, j: Int) {
     if (i == j) {
         return
@@ -63,6 +63,7 @@ fun <T> Array<T>.moveAndShift(i: Int, j: Int) {
 /**
  * Add [component] into the array and return a new array
  **/
+@Suppress("unused")
 inline fun <reified T> Array<T>.add(component: T) =
     toMutableList()
         .apply { add(component) }
@@ -71,6 +72,7 @@ inline fun <reified T> Array<T>.add(component: T) =
 /**
  * Add [components] into the array and return a new array
  **/
+@Suppress("unused")
 inline fun <reified T> Array<T>.add(vararg components: T) =
     toMutableList()
         .apply { components.forEach { component -> add(component) } }
@@ -79,6 +81,7 @@ inline fun <reified T> Array<T>.add(vararg components: T) =
 /**
  * Add [componentsArray] into the array and return a new array
  **/
+@Suppress("unused")
 inline fun <reified T> Array<T>.add(vararg componentsArray: Array<T>) =
     toMutableList().apply {
         componentsArray.forEach { outer -> outer.forEach { inner -> add(inner) } }

@@ -15,7 +15,8 @@ package lib.github1552980358.ktExtension.jvm.kotlin
  * }?.apply {
  *     /** Action when not null **/
  * }
- */
+ **/
+@Suppress("unused")
 fun <T> T?.nullDo(block: () -> Unit): T? {
     if (this==null) {
         block()

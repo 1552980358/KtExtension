@@ -14,6 +14,7 @@ import java.util.Calendar.OCTOBER
 import java.util.Calendar.NOVEMBER
 import java.util.Calendar.DECEMBER
 
+@Suppress("unused")
 fun Calendar.getMonthDays(): Int {
     return when (get(Calendar.MONTH)) {
         JANUARY, MARCH, MAY, JULY, AUGUST, OCTOBER, DECEMBER -> 31
@@ -29,6 +30,7 @@ fun Calendar.getMonthDays(): Int {
     }
 }
 
+@Suppress("unused")
 fun Calendar.getYearDays(): Int {
     return if (isLeapYear()) 366 else 365
 }

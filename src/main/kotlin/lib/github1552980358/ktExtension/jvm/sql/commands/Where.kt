@@ -42,6 +42,17 @@ class Where: SQLCommand {
         conditions.add(ConditionalExpress().setGlobalCondition(OR_NOT).setCondition(condition))
     }
     
+    @Suppress("unused")
+    fun orderBy() = orderBy(OrderBy(builder))
+    
+    @Suppress("MemberVisibilityCanBePrivate")
+    fun orderBy(orderBy: OrderBy): OrderBy {
+        builder ?: throw IllegalStateException()
+        builder?.where = this
+        builder?.orderBy = orderBy
+        return orderBy
+    }
+    
     override fun formString() =
         StringBuilder().apply {
             append(CMD_WHERE)

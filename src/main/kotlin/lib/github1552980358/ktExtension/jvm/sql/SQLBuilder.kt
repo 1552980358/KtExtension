@@ -1,7 +1,9 @@
 package lib.github1552980358.ktExtension.jvm.sql
 
 import lib.github1552980358.ktExtension.jvm.sql.commands.From
+import lib.github1552980358.ktExtension.jvm.sql.commands.OrderBy
 import lib.github1552980358.ktExtension.jvm.sql.commands.Select
+import lib.github1552980358.ktExtension.jvm.sql.commands.Where
 
 class SQLBuilder {
     
@@ -19,6 +21,8 @@ class SQLBuilder {
     
     var select: Select? = null
     var from: From? = null
+    var where: Where? = null
+    var orderBy: OrderBy? = null
     
     fun select(select: Select) = apply {
         this.select = select

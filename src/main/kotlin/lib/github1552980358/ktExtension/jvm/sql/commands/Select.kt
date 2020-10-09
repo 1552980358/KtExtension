@@ -11,6 +11,7 @@ class Select: SQLCommand {
         const val DIVIDER = ", "
         
         private const val CMD_SELECT = "select"
+        private const val CMD_SELECT_DISTINCT = "distinct"
         private const val SELECT = "Select"
         private const val MSG_EMPTY_SELECTION = "Selection not specified"
     }
@@ -29,6 +30,12 @@ class Select: SQLCommand {
     
     fun all() = apply {
         isSelectAll = true
+    }
+    
+    var distinct = false
+    @Suppress("unused")
+    fun distinct() = apply {
+        distinct = true
     }
     
     @Suppress("unused")
@@ -66,6 +73,11 @@ class Select: SQLCommand {
         StringBuilder().apply {
             append(CMD_SELECT)
             append(SPACE)
+            
+            if (distinct) {
+                append(CMD_SELECT_DISTINCT)
+                append(SPACE)
+            }
             
             if (isSelectAll) {
                 append(SELECT_ALL)

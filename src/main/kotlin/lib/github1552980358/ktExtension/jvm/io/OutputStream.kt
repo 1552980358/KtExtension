@@ -1,6 +1,7 @@
 package lib.github1552980358.ktExtension.jvm.io
 
 import lib.github1552980358.ktExtension.jvm.keyword.tryCatch
+import java.io.BufferedWriter
 import java.io.OutputStream
 
 /**
@@ -51,6 +52,29 @@ inline fun OutputStream.osUse(block: OutputStream.() -> Unit) {
     }
 }
 
+@Suppress("unused")
+inline fun OutputStream.applyAsBufferedWriter(block: BufferedWriter.() -> Unit) =
+    osApply {
+        bufferedWriter().use { bufferedWriter ->
+            block(bufferedWriter)
+            bufferedWriter.flush()
+        }
+    }
+
+@Suppress("unused")
+inline fun <R> OutputStream.runAsBufferedWriter(block: BufferedWriter.() -> R): R =
+    try {
+        bufferedWriter().use { bufferedWriter ->
+            val value = block(bufferedWriter)
+            bufferedWriter.flush()
+            return value
+        }
+    } catch (e: Exception) {
+        throw e
+    } finally {
+        tryCatch { flush() }
+        tryCatch { close() }
+    }
 
 /**
  * Extension allows writing [String] directly without manually converting into [ByteArray]

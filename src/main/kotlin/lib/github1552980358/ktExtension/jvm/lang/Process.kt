@@ -39,7 +39,7 @@ fun Process.commandEnd() = apply {
  * Get the output of the [Process]
  **/
 @Suppress("unused")
-fun Process.getCommandOutputLines(): List<String>? {
+val Process.getCommandOutputLines get(): List<String>? {
     var lines: List<String>? = null
     try {
         inputStream?.use { inputStream ->

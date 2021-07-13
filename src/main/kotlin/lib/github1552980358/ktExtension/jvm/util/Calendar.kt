@@ -14,12 +14,11 @@ import java.util.Calendar.OCTOBER
 import java.util.Calendar.NOVEMBER
 import java.util.Calendar.DECEMBER
 
-@Suppress("unused")
-fun Calendar.getMonthDays(): Int {
+val Calendar.getMonthDays get(): Int {
     return when (get(Calendar.MONTH)) {
         JANUARY, MARCH, MAY, JULY, AUGUST, OCTOBER, DECEMBER -> 31
         APRIL, JUNE, SEPTEMBER, NOVEMBER -> 30
-        FEBRUARY -> if (isLeapYear()) 29 else 28
+        FEBRUARY -> if (isLeapYear) 29 else 28
         /**
          * Refers to [java.util.Calendar.UNDECIMBER]
          * No support for it although java has this constant value within source code
@@ -30,11 +29,8 @@ fun Calendar.getMonthDays(): Int {
     }
 }
 
-@Suppress("unused")
-fun Calendar.getYearDays(): Int {
-    return if (isLeapYear()) 366 else 365
-}
+val Calendar.getYearDays get() = if (isLeapYear) 366 else 365
 
-fun Calendar.isLeapYear() = get(Calendar.YEAR).run {
+val Calendar.isLeapYear get() = get(Calendar.YEAR).run {
     this % 4 == 0 && this % 100 != 0 || this % 400 != 0
 }

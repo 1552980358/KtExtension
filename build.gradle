@@ -10,10 +10,19 @@ group 'lib.github1552980358.ktExtension.jvm'
 version '0.1'
 
 repositories {
-    maven { url 'https://jitpack.io' }
     jcenter()
     mavenCentral()
     google()
+    maven { url 'https://jitpack.io' }
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId 'lib.github1552980358.ktExtension.jvm'
+            version '0.1'
+        }
+    }
 }
 
 dependencies {

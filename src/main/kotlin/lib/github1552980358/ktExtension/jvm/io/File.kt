@@ -9,13 +9,13 @@ import java.io.Serializable
 /**
  * Check whether [File] is empty
  **/
-fun File.isEmpty() = length() == 0L
+val File.isEmpty get() = length() == 0L
 
 /**
  * Check whether [File] is null or empty
  **/
 @Suppress("unused")
-fun File?.isNullOrEmpty() = this == null || isEmpty()
+val File?.isNullOrEmpty get() = this == null || isEmpty
 
 /**
  * Write [Any]? class into [File]
@@ -39,15 +39,14 @@ fun File.writeObject(obj: Any?) {
  * Read Object from [File] as [Any]?
  * Exceptions will be thrown by [ObjectInputStream] if some exception is found
  **/
-fun File.readObject(): Any? = inputStream().readObject()
+val File.readObject get(): Any? = inputStream().readObject
 
 /**
  * Read Object from [File]
  * null will be returned if [File] does not exist or exception thrown
  * Nullable Any will be returned if no exception found
  **/
-@Suppress("unused")
-fun File.readObjectSafe(): Any? {
+val File.readObjectSafe get(): Any? {
     if (!exists()) {
         return null
     }
@@ -55,7 +54,7 @@ fun File.readObjectSafe(): Any? {
         return null
     }
     var temp: Any? = null
-    tryCatch { temp = readObject() }
+    tryCatch { temp = readObject }
     return temp
 }
 
@@ -73,7 +72,6 @@ fun <T> File.readObjectAs(): T? = inputStream().readObjectAs()
  * [File] does not exists or
  * [File] is empty
  **/
-@Suppress("unused")
 fun <T> File.readObjectSafeAs(): T? {
     if (!exists()) {
         return null
@@ -93,7 +91,6 @@ fun <T> File.readObjectSafeAs(): T? {
  * Rename file into [name] within the same directory
  * No path is required to provide
  **/
-@Suppress("unused")
 fun File.renameAs(name: String) = renameTo(File(this.parent, name))
 
 /**
@@ -128,11 +125,8 @@ fun File.moveTo(file: File): Int {
     return 4
 }
 
-@Suppress("unused")
 fun File.moveTo(absolutePath: String) = moveTo(File(absolutePath))
 
-@Suppress("unused")
 fun File.moveTo(dir: String, name: String) = moveTo(File(dir, name))
 
-@Suppress("unused")
 fun File.moveTo(dir: File, name: String) = moveTo(File(dir, name))

@@ -3,7 +3,7 @@ package lib.github1552980358.ktExtension.jvm.io
 import java.io.InputStream
 import java.io.ObjectInputStream
 
-fun InputStream.readObject(): Any? {
+val InputStream.readObject get(): Any? {
     var temp: Any?
     use { `is` ->
         ObjectInputStream(`is`).use { ois ->
@@ -15,5 +15,5 @@ fun InputStream.readObject(): Any? {
 
 fun <T> InputStream.readObjectAs(): T? {
     @Suppress("UNCHECKED_CAST")
-    return readObject() as T?
+    return readObject as T?
 }

@@ -5,14 +5,16 @@ import java.util.Base64
 /**
  * Decode raw [Base64] content [String] into [String]
  **/
-fun String.decodeBase64() = String(Base64.getDecoder().decode(this))
+val String.decodeBase64 get(): String? = String(Base64.getDecoder().decode(this))
 
 /**
  * Encode message [String] content [String] into Base64 [ByteArray]
  **/
-fun String.encodeBase64() = Base64.getEncoder().encode(toByteArray())
+@Suppress("unused")
+val String.encodeBase64 get(): ByteArray? = Base64.getEncoder().encode(toByteArray())
 
 /**
  * Encode [ByteArray] content [String] into Base64 [ByteArray]
  **/
-fun ByteArray.encodeBase64() = Base64.getEncoder().encode(this)
+@Suppress("unused")
+val ByteArray.encodeBase64 get(): ByteArray? = Base64.getEncoder().encode(this)

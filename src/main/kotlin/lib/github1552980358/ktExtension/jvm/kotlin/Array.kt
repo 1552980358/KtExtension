@@ -86,3 +86,5 @@ inline fun <reified T> Array<T>.add(vararg componentsArray: Array<T>) =
     toMutableList().apply {
         componentsArray.forEach { outer -> outer.forEach { inner -> add(inner) } }
     }.toTypedArray()
+
+fun <charSequence: CharSequence> Array<out charSequence>.joinTogether() = joinToString(separator = "")

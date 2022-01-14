@@ -160,22 +160,19 @@ fun ArrayList<Double>.binSearch(value: Double, sort: Boolean = false): Int {
     return if (this[mid] == value) mid else -1
 }
 
+inline fun <reified T> ArrayList<T>.createElementInstance(vararg parameters: Any): T = when {
+    parameters.isEmpty() -> T::class.java.getDeclaredConstructor()
+    else -> T::class.java.getDeclaredConstructor(*parameters.map { it::class.java }.toTypedArray())
+}.apply { isAccessible = true }.newInstance(parameters)
+
 /**
  * Add an element with [parameters] of new instance of class [T]
  **/
-inline fun <reified T> ArrayList<T>.add(vararg parameters: Any) = add(
-    when {
-        parameters.isEmpty() -> T::class.java.getDeclaredConstructor()
-        else -> T::class.java.getDeclaredConstructor(*parameters.map { it::class.java }.toTypedArray())
-    }.apply { isAccessible = true }.newInstance(parameters)
-)
+inline fun <reified T> ArrayList<T>.addInstance(vararg parameters: Any) =
+    add(createElementInstance(parameters))
 
 /**
  * Add an element with [parameters] and [apply] block of new instance of class [T]
  **/
-inline fun <reified T> ArrayList<T>.add(vararg parameters: Any, apply: T.() -> Unit) = add(
-    when {
-        parameters.isEmpty() -> T::class.java.getDeclaredConstructor()
-        else -> T::class.java.getDeclaredConstructor(*parameters.map { it::class.java }.toTypedArray())
-    }.apply { isAccessible = true }.newInstance(parameters).apply(apply)
-)
+inline fun <reified T> ArrayList<T>.addInstance(vararg parameters: Any, apply: T.() -> Unit) =
+    add(createElementInstance(parameters).apply(apply))

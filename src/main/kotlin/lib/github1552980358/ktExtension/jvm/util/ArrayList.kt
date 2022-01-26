@@ -2,6 +2,7 @@
 
 package lib.github1552980358.ktExtension.jvm.util
 
+import lib.github1552980358.ktExtension.jvm.keyword.tryRun
 import java.util.Collections
 
 /**
@@ -161,9 +162,9 @@ fun ArrayList<Double>.binSearch(value: Double, sort: Boolean = false): Int {
 }
 
 inline fun <reified T> ArrayList<T>.createElementInstance(vararg parameters: Any): T = when {
-    parameters.isEmpty() -> T::class.java.getDeclaredConstructor()
-    else -> T::class.java.getDeclaredConstructor(*parameters.map { it::class.java }.toTypedArray())
-}.apply { isAccessible = true }.newInstance(*parameters)
+    parameters.isEmpty() -> tryRun { T::class.constructors.find { it.parameters.isEmpty() }?.call() } ?: throw NoSuchMethodException()
+    else -> tryRun { T::class.constructors.find { it.parameters.isEmpty() }?.call(*parameters) } ?: throw NoSuchMethodException()
+}
 
 /**
  * Add an element with [parameters] of new instance of class [T]

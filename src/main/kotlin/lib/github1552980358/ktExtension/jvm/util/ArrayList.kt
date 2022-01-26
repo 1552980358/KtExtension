@@ -161,10 +161,8 @@ fun ArrayList<Double>.binSearch(value: Double, sort: Boolean = false): Int {
     return if (this[mid] == value) mid else -1
 }
 
-inline fun <reified T> ArrayList<T>.createElementInstance(vararg parameters: Any): T = when {
-    parameters.isEmpty() -> tryRun { T::class.constructors.find { it.parameters.isEmpty() }?.call() } ?: throw NoSuchMethodException()
-    else -> tryRun { T::class.constructors.find { it.parameters.isEmpty() }?.call(*parameters) } ?: throw NoSuchMethodException()
-}
+inline fun <reified T> ArrayList<T>.createElementInstance(vararg parameters: Any): T =
+    tryRun { T::class.constructors.find { it.parameters.isEmpty() }?.call(*parameters) } ?: throw NoSuchMethodException()
 
 /**
  * Add an element with [parameters] of new instance of class [T]

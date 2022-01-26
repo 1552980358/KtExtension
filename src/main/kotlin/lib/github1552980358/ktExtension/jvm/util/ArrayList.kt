@@ -162,7 +162,7 @@ fun ArrayList<Double>.binSearch(value: Double, sort: Boolean = false): Int {
 }
 
 inline fun <reified T> ArrayList<T>.createElementInstance(vararg parameters: Any): T =
-    tryRun { T::class.constructors.find { it.parameters.isEmpty() }?.call(*parameters) } ?: throw NoSuchMethodException()
+    tryRun { T::class.constructors.find { it.parameters.size == parameters.size }?.call(*parameters) } ?: throw NoSuchMethodException()
 
 /**
  * Add an element with [parameters] of new instance of class [T]

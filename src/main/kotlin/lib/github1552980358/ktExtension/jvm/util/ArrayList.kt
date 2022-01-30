@@ -175,3 +175,19 @@ inline fun <reified T> ArrayList<T>.addInstance(vararg parameters: Any) =
  **/
 inline fun <reified T> ArrayList<T>.addInstance(vararg parameters: Any, apply: T.() -> Unit) =
     add(createElementInstance(*parameters).apply(apply))
+
+/**
+ * Operator +=
+ * Merge [arrayList]
+ **/
+operator fun <T> ArrayList<T>.plusAssign(arrayList: ArrayList<out T>) {
+    addAll(arrayList)
+}
+
+/**
+ * Operator -=
+ * Remove elements in [arrayList]
+ **/
+operator fun <T> ArrayList<T>.minusAssign(arrayList: ArrayList<out T>) {
+    arrayList.forEach { item -> removeIf { item?.equals(it) == true } }
+}

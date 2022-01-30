@@ -40,3 +40,8 @@ val String.hexStrToInt: Int get() {
     }
     return tmp
 }
+
+/**
+ * Operator +
+ **/
+operator fun String.plus(any: Any) = this + any.toString()
